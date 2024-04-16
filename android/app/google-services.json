@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "808278906096",
+    "project_id": "push-testing-6e973",
+    "storage_bucket": "push-testing-6e973.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808278906096:android:dc456d24fe53c90913de35",
+        "android_client_info": {
+          "package_name": "com.nativetest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc5mbzvgPiDBcXyRT2jYz_v2an7AoSg54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,24 +1,15 @@
 import React from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet, Text, Button} from 'react-native';
 import Animated, {
   useSharedValue,
-  withSpring,
   useAnimatedStyle,
-  useAnimatedProps,
   withTiming,
-  withRepeat,
-  Easing,
-  withSequence,
-  withDelay,
   withDecay,
 } from 'react-native-reanimated';
-
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
+import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import {useAppSelector, useAppDispatch} from '../hooks';
+import {increment, decrement} from '../feat/counterSlice';
 
 type StackParamList = {
   Home: undefined;
@@ -34,11 +25,22 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-const HomePage: React.FC<Props> = ({navigation}) => {
+const HomePage: React.FC<Props> = () => {
   const pressed = useSharedValue(false);
   const offset = useSharedValue(0);
   const width = useSharedValue(0);
   const SIZE = 120;
+
+  const counterValue = useAppSelector(state => state.counter.value);
+  const dispatch = useAppDispatch();
+
+  const handleIncrement = () => {
+    dispatch(increment());
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrement());
+  };
 
   const tap = Gesture.Pan()
     .onBegin(() => {
@@ -68,6 +70,11 @@ const HomePage: React.FC<Props> = ({navigation}) => {
       <GestureDetector gesture={tap}>
         <Animated.View style={[styles.circle, animatedStyles]} />
       </GestureDetector>
+      <View>
+        <Text>Counter: {counterValue}</Text>
+        <Button title="increase" onPress={handleIncrement} />
+        <Button title="increase" onPress={handleDecrement} />
+      </View>
     </View>
   );
 };
